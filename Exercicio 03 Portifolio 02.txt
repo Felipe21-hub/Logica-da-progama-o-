@@ -1,0 +1,24 @@
+algoritmo "login"
+
+var
+   senha, senhaCorreta: caractere
+
+inicio
+
+   senhaCorreta <- "senha123"
+
+   escreval("=== SISTEMA DE LOGIN ===")
+
+   escreva("Digite a senha: ")
+   leia(senha)
+
+   enquanto senha <> senhaCorreta faca
+      escreval("ERRO: senha incorreta!")
+      escreva("Digite a senha novamente: ")
+      leia(senha)
+   fimenquanto
+
+   escreval("Login realizado com sucesso!")
+   escreval("Bem-vindo ao sistema!")
+
+fimalgoritmo
