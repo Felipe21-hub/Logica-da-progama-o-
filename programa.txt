@@ -1,0 +1,258 @@
+programa
+
+{
+
+	funcao inicio()
+
+	{
+
+		// Variáveis principais do jogo
+
+		inteiro distanciaParaEscapar = 100 // Começa em 100 e vence ao chegar em 0
+
+		inteiro energiaJogador = 100        // Se chegar a 0, você perde
+
+		inteiro escolhaMenu
+
+		inteiro escolhaItem
+ 
+		// Sistema de Itens (Começa com 4 itens diferentes)
+
+		inteiro energetico = 2
+
+		inteiro kitMedico = 1
+
+		inteiro distracao Sonora = 2
+
+		inteiro sapatoCorrida = 1
+ 
+		escreva("====================================\n")
+
+		escreva("      FUGA DO APOCALIPSE ZUMBI      \n")
+
+		escreva("====================================\n")
+
+		escreva("O helicóptero está a 100 metros! Corra!\n")
+ 
+		// Laço de repetição para as rodadas
+
+		enquanto (distanciaParaEscapar > 0 e energiaJogador > 0)
+
+		{
+
+			escreva("\n------------------------------------\n")
+
+			escreva("Distância até o helicóptero: ", distanciaParaEscapar, " metros\n")
+
+			escreva("Sua Energia: ", energiaJogador, "%\n")
+
+			escreva("------------------------------------\n")
+ 
+			escreva("1 - [Agressiva] Correr muito rápido (Avança bastante, mas gasta energia)\n")
+
+			escreva("2 - [Defensiva] Descansar um pouco (Recupera energia)\n")
+
+			escreva("3 - [Mochila] Usar um item\n")
+
+			escreva("Escolha sua ação: ")
+
+			leia(escolhaMenu)
+ 
+			se (escolhaMenu == 1)
+
+			{
+
+				escreva("\nVocê correu com todas as forças!\n")
+
+				distanciaParaEscapar = distanciaParaEscapar - 25 // Avança 25 metros
+
+				energiaJogador = energiaJogador - 20          // Gasta 20 de energia
+
+			}
+
+			senao se (escolhaMenu == 2)
+
+			{
+
+				escreva("\nVocê parou para respirar e recuperar o fôlego.\n")
+
+				energiaJogador = energiaJogador + 25
+
+				se (energiaJogador > 100) 
+
+				{
+
+					energiaJogador = 100
+
+				}
+
+			}
+
+			senao se (escolhaMenu == 3)
+
+			{
+
+				escreva("\n=== SEUS ITENS ===\n")
+
+				escreva("1 - Energético (Qtd: ", energetico, ") [+30 de Energia]\n")
+
+				escreva("2 - Kit Médico (Qtd: ", kitMedico, ") [+50 de Energia]\n")
+
+				escreva("3 - Distração Sonora (Qtd: ", distracaoSonora, ") [Avança 15m sem gastar energia]\n")
+
+				escreva("4 - Sapato de Corrida (Qtd: ", sapatoCorrida, ") [Avança 30m de uma vez]\n")
+
+				escreva("Escolha o item: ")
+
+				leia(escolhaItem)
+ 
+				se (escolhaItem == 1)
+
+				{
+
+					se (energetico > 0)
+
+					{
+
+						energiaJogador = energiaJogador + 30
+
+						se (energiaJogador > 100) { energiaJogador = 100 }
+
+						energetico = energetico - 1
+
+						escreva("\nVocê tomou o energético e recuperou energia!\n")
+
+					}
+
+					senao { escreva("\nItem esgotado!\n") }
+
+				}
+
+				senao se (escolhaItem == 2)
+
+				{
+
+					se (kitMedico > 0)
+
+					{
+
+						energiaJogador = energiaJogador + 50
+
+						se (energiaJogador > 100) { energiaJogador = 100 }
+
+						kitMedico = kitMedico - 1
+
+						escreva("\nVocê usou o kit médico e se sente revigorado!\n")
+
+					}
+
+					senao { escreva("\nItem esgotado!\n") }
+
+				}
+
+				senao se (escolhaItem == 3)
+
+				{
+
+					se (distracaoSonora > 0)
+
+					{
+
+						distanciaParaEscapar = distanciaParaEscapar - 15
+
+						distracaoSonora = distracaoSonora - 1
+
+						escreva("\nVocê jogou uma bombinha. Os zumbis se distraíram e você avançou!\n")
+
+					}
+
+					senao { escreva("\nItem esgotado!\n") }
+
+				}
+
+				senao se (chooseItem == 4)
+
+				{
+
+					se (sapatoCorrida > 0)
+
+					{
+
+						distanciaParaEscapar = distanciaParaEscapar - 30
+
+						sapatoCorrida = sapatoCorrida - 1
+
+						escreva("\nVocê calçou os sapatos rápidos e disparou na frente!\n")
+
+					}
+
+					senao { escreva("\nItem esgotado!\n") }
+
+				}
+
+				senao
+
+				{
+
+					escreva("\nItem inválido!\n")
+
+				}
+
+			}
+
+			senao
+
+			{
+
+				escreva("\nOpção inválida!\n")
+
+			}
+ 
+			// Os zumbis cansam o jogador a cada rodada se ele ainda não tiver escapado
+
+			se (distanciaParaEscapar > 0)
+
+			{
+
+				energiaJogador = energiaJogador - 10
+
+				escreva("Os zumbis estão atrás de você! O cansaço tirou 10 de energia.\n")
+
+			}
+
+		}
+ 
+		// Telas Finais (Condição de Vitória ou Derrota)
+
+		escreva("\n====================================\n")
+
+		se (distanciaParaEscapar <= 0)
+
+		{
+
+			escreva("VITÓRIA ÉPICA!\n")
+
+			escreva("Você alcançou o helicóptero a tempo!\n")
+
+			escreva("As portas se fecham e você voa para a segurança salvo da horda!\n")
+
+		}
+
+		senao
+
+		{
+
+			escreva("GAME OVER!\n")
+
+			escreva("Sua energia acabou no meio do caminho.\n")
+
+			escreva("Você foi cercado e os zumbis te pegaram.\n")
+
+		}
+
+		escreva("====================================\n")
+
+	}
+
+}
+ 
